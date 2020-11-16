@@ -31,25 +31,45 @@
 
     document.getElementById("myTestEvent").addEventListener("click", myFunction)
 
-    // challenge 1
-    document.querySelector(".red").addEventListener("click", function(){
-        document.querySelector("body").setAttribute("class", "redBack")
-    })
+    // // challenge 1
+    // document.querySelector(".red").addEventListener("click", function(){
+    //     document.querySelector("body").setAttribute("class", "redBack")
+    // })
     
-    // challenge 2
-    document.querySelector(".green").addEventListener("click", function(){
-        document.querySelector("body").setAttribute("class", "greenBack")
-    })
+    // // challenge 2
+    // document.querySelector(".green").addEventListener("click", function(){
+    //     document.querySelector("body").setAttribute("class", "greenBack")
+    // })
 
-    // challenge 3
-    document.querySelector(".blue").addEventListener("click", function(){
-        document.querySelector("body").setAttribute("class", "blueBack")
-    })
+    // // challenge 3
+    // document.querySelector(".blue").addEventListener("click", function(){
+    //     document.querySelector("body").setAttribute("class", "blueBack")
+    // })
 
-    // challenge 4
-    document.querySelector(".reset").addEventListener("click", function(){
-        document.querySelector("body").removeAttribute("class")
-    })
+    // // challenge 4
+    // document.querySelector(".reset").addEventListener("click", function(){
+    //     document.querySelector("body").removeAttribute("class")
+    // })
+
+    // there is another way to do above challenges. See below
+    var colorButtons = document.querySelectorAll(".colPicker")
+    console.dir(colorButtons) // we can see this has now created a list with all the classes - redBack, greenBack, blueBack, reset
+
+    for (var i = 0; i < colorButtons.length; i++){
+        // console.dir(colorButtons[i])
+        colorButtons[i].addEventListener("click", changeColur)
+    }
+
+    function changeColur(ev){
+        console.info(ev.target.classList[0])
+        var colourPicked = ev.target.classList[0] + "Back"
+        var bodyElement = document.querySelector("body")
+        if (colourPicked === "resetBack"){// triple equals means - value must match and also data type must match
+            bodyElement.removeAttribute("class")
+        }else{
+            bodyElement.setAttribute("class", colourPicked)
+        }
+    }
 
     // end
 })();
